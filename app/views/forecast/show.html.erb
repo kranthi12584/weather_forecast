@@ -1,0 +1,18 @@
+<% if @error.present? %>
+  <p><strong>Error:</strong> <%= @error %></p>
+<% else %>
+  <h2>Weather Forecast</h2>
+  <p><strong>Current Temperature:</strong> <%= @forecast["current_temp"] %>°C</p>
+  <p><strong>High Temperature:</strong> <%= @forecast["high_temp"] %>°C</p>
+  <p><strong>Low Temperature:</strong> <%= @forecast["low_temp"] %>°C</p>
+  <p><strong>Data Source:</strong> <%= @from_cache ? "Cache" : "Live API" %></p>
+
+  <h3>Extended Forecast:</h3>
+  <ul>
+    <% @forecast["extended_forecast"].each do |day| %>
+      <li>
+        <strong><%= day["date"] %>:</strong> High: <%= day["high"] %>°C, Low: <%= day["low"] %>°C
+      </li>
+    <% end %>
+  </ul>
+<% end %>
